@@ -39,7 +39,7 @@ end
 function GodCheck:ModuleLoad()
 	print( "--------------------------------------------------" )
 	print( "Type achelp in console to get ac help :)" )
-	print( "Check for update on jc2mp forum - https://www.jc-mp.com/forums/index.php/topic,6234.0.html" )
+	print( "Check for update - https://www.jc-mp.com/forums/index.php/topic,6234.0.html" )
 	print( "--------------------------------------------------" )
 end
 
