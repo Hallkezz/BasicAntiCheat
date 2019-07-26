@@ -31,10 +31,12 @@ end
 function GodCheck:LocalPlayerBulletHit( args )
 	if Active then
 		if BulletCheck then
-			self.phealth = LocalPlayer:GetHealth()
-			if LocalPlayer:GetHealth() >= self.phealth then
-				if LocalPlayer:GetHealth() >= 0.001 then
-					Network:Send( "CheckThisPlayer" )
+			if not args.attacker:GetVehicle() then
+				self.phealth = LocalPlayer:GetHealth()
+				if LocalPlayer:GetHealth() >= self.phealth then
+					if LocalPlayer:GetHealth() >= 0.001 then
+						Network:Send( "CheckThisPlayer" )
+					end
 				end
 			end
 		end
@@ -67,8 +69,8 @@ end
 godcheck = GodCheck()
 -----------------------------------------------------------------------------------
 --Script Version
---v0.1--
+--v0.2--
 
 --Release Date
---10.07.19--
+--26.07.19--
 -----------------------------------------------------------------------------------
