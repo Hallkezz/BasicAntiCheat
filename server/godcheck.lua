@@ -64,12 +64,14 @@ function GodCheck:SuspicionLevel( args, sender )
 end
 
 function GodCheck:CheckThisPlayer( args, sender )
-	self.phealth[ sender:GetId() ] = sender:GetHealth()
-	if sender:GetHealth() >= self.phealth[ sender:GetId() ] then
-		if sender:GetHealth() >= 0.001 then
-			Network:Send( sender, "Checking" )
-		end
-	end
+    if not sender:GetVehicle() then
+    	self.phealth[ sender:GetId() ] = sender:GetHealth()
+    	if sender:GetHealth() >= self.phealth[ sender:GetId() ] then
+	      if sender:GetHealth() >= 0.001 then
+		      	Network:Send( sender, "Checking" )
+	    	end
+        end
+    end
 end
 
 function GodCheck:ItsCheater( args, sender )
