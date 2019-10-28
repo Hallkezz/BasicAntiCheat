@@ -33,7 +33,9 @@ function GodCheck:__init()
 	Console:Subscribe( "acextremelogs", self, self.ToggleExtremeLogs )
 	Console:Subscribe( "ackickcheaters", self, self.ToggleKickCheaters )
 
-	self.phealth = 1
+	Events:Subscribe( "PlayerQuit", self, self.PlayerQuit )
+
+	self.phealth = {}
 end
 
 function GodCheck:ModuleLoad()
@@ -62,8 +64,8 @@ function GodCheck:SuspicionLevel( args, sender )
 end
 
 function GodCheck:CheckThisPlayer( args, sender )
-	self.phealth = sender:GetHealth()
-	if sender:GetHealth() >= self.phealth then
+	self.phealth[ sender:GetId() ] = sender:GetHealth()
+	if sender:GetHealth() >= self.phealth[ sender:GetId() ] then
 		if sender:GetHealth() >= 0.001 then
 			Network:Send( sender, "Checking" )
 		end
@@ -71,7 +73,7 @@ function GodCheck:CheckThisPlayer( args, sender )
 end
 
 function GodCheck:ItsCheater( args, sender )
-	if sender:GetHealth() >= self.phealth then
+	if sender:GetHealth() >= self.phealth[ sender:GetId() ] then
 		if Logs then
 			print( sender:GetName() .. " - " .. "Suspicion of cheating: Level 1/2" )
 		end
@@ -135,11 +137,15 @@ function GodCheck:ToggleKickCheaters()
 	print( "Kick Cheaters: ", KickCheaters )
 end
 
+function GodCheck:PlayerQuit( args )
+	self.phealth[ args.player:GetId() ] = nil
+end
+
 godcheck = GodCheck()
 -----------------------------------------------------------------------------------
 --Script Version
---v0.1--
+--v0.2--
 
 --Release Date
---10.07.19--
+--28.10.19--
 -----------------------------------------------------------------------------------
