@@ -67,7 +67,7 @@ function GodCheck:CheckThisPlayer( args, sender )
     if not sender:GetVehicle() then
     	self.phealth[ sender:GetId() ] = sender:GetHealth()
     	if sender:GetHealth() >= self.phealth[ sender:GetId() ] then
-	      if sender:GetHealth() >= 0.001 then
+	      if sender:GetHealth() > 0 then
 		      	Network:Send( sender, "Checking" )
 	    	end
         end
@@ -79,7 +79,7 @@ function GodCheck:ItsCheater( args, sender )
 		if Logs then
 			print( sender:GetName() .. " - " .. "Suspicion of cheating: Level 1/2" )
 		end
-		if sender:GetHealth() >= 0.001 then
+		if sender:GetHealth() > 0 then
 			Chat:Send( sender, ACPrefix .. CHText, Color.Yellow )
 			if Logs then
 				print( sender:GetName() .. " - " .. CHText )
@@ -146,8 +146,8 @@ end
 godcheck = GodCheck()
 -----------------------------------------------------------------------------------
 --Script Version
---v0.2--
+--v0.3--
 
 --Release Date
---28.10.19--
+--02.12.21--
 -----------------------------------------------------------------------------------
