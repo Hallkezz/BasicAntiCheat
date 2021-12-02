@@ -34,7 +34,7 @@ function GodCheck:LocalPlayerBulletHit( args )
 			if not args.attacker:GetVehicle() then
 				self.phealth = LocalPlayer:GetHealth()
 				if LocalPlayer:GetHealth() >= self.phealth then
-					if LocalPlayer:GetHealth() >= 0.001 then
+					if LocalPlayer:GetHealth() > 0 then
 						Network:Send( "CheckThisPlayer" )
 					end
 				end
@@ -49,7 +49,7 @@ function GodCheck:LocalPlayerExplosionHit( args )
 		if ExplosionCheck then
 			self.phealth = LocalPlayer:GetHealth()
 			if LocalPlayer:GetHealth() >= self.phealth then
-				if LocalPlayer:GetHealth() >= 0.001 then
+				if LocalPlayer:GetHealth() > 0 then
 					Network:Send( "CheckThisPlayer" )
 				end
 			end
@@ -60,7 +60,7 @@ end
 
 function GodCheck:Checking()
 	if LocalPlayer:GetHealth() >= self.phealth then
-		if LocalPlayer:GetHealth() >= 0.001 then
+		if LocalPlayer:GetHealth() > 0 then
 			Network:Send( "ItsCheater" )
 		end
 	end
@@ -69,8 +69,8 @@ end
 godcheck = GodCheck()
 -----------------------------------------------------------------------------------
 --Script Version
---v0.2--
+--v0.3--
 
 --Release Date
---26.07.19--
+--02.12.21--
 -----------------------------------------------------------------------------------
