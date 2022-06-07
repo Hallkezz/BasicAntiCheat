@@ -1,4 +1,4 @@
-# Basic Anti-Cheat
+# JC2MP-BasicAntiCheat
 
 Basic Anti-Cheat for your server. At the moment, it protects only from invulnerable players.
 
